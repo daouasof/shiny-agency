@@ -1,17 +1,7 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import colors from '../../utils/style/colors'
 import logo from '../../assets/dark-logo.png'
-
-const StyledLink = styled(Link)`
-  padding: 15px;
-  color: #8186a0;
-  text-decoration: none;
-  font-size: 18px;
-  ${(props) =>
-    props.$isFullLink &&
-    `color: white; border-radius: 30px; background-color: ${colors.primary};`}
-`
+import { StyledLink } from '../../utils/style/Atoms'
+import { Link } from 'react-router-dom'
 
 const StyledNav = styled.nav`
   display: flex;
@@ -20,14 +10,16 @@ const StyledNav = styled.nav`
   align-items: center;
 `
 
-const StyledLogo = styled.img`
-  height: 50px;
+const HomeLogo = styled.img`
+  height: 70px;
 `
 
 function Header() {
   return (
     <StyledNav>
-      <StyledLogo src={logo} alt="logo" />
+      <Link to="/">
+        <HomeLogo src={logo} alt="logo" />
+      </Link>
       <div>
         <StyledLink to="/">Accueil</StyledLink>
         <StyledLink to="/freelances">Profils</StyledLink>

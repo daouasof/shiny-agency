@@ -26,7 +26,8 @@ const freelanceProfiles = [
 function Freelances() {
   return (
     <div>
-      <h1>Freelances 👩‍💻👨‍💻👩‍💻</h1>
+      <h1>Trouvez votre prestataire</h1>
+      <p> Chez Shiny nous réunissons les meilleurs profils pour vous.</p>
       <CardsContainer>
         {freelanceProfiles.map((profile, index) => (
           <Card

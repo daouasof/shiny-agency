@@ -10,15 +10,19 @@ const CardLabel = styled.span`
 `
 
 const CardImage = styled.img`
-  height: 80px;
-  width: 80px;
+  height: 180px;
+  width: 180px;
   border-radius: 50%;
+  // align-self: center;
 `
 
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px;
+  box-sizing: border-box;
   background-color: ${colors.backgroundLight};
   border-radius: 30px;
   width: 350px;
@@ -31,9 +35,7 @@ const CardWrapper = styled.div`
 
 function Card({ label, title, picture }) {
   return (
-    <CardWrapper
-      style={{ display: 'flex', flexDirection: 'column', padding: 15 }}
-    >
+    <CardWrapper>
       <CardLabel>{label}</CardLabel>
       <CardImage src={picture} alt="freelance" />
       <span>{title}</span>

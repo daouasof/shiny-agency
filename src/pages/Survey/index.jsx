@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
@@ -7,6 +8,15 @@ function Survey() {
   const next = questionNumberInt + 1
   const previous =
     questionNumberInt === 1 ? questionNumberInt : questionNumberInt - 1
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/survey`).then((response) =>
+      response
+        .json()
+        .then(({ surveyData }) => console.log(surveyData))
+        .catch((error) => console.log(error)),
+    )
+  }, [])
 
   return (
     <div>

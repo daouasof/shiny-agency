@@ -1,30 +1,35 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 function Survey() {
   const { questionNumber } = useParams()
-  const questionNumberInt = parseInt(questionNumber, 10)
-  const next = questionNumberInt + 1
-  const previous =
-    questionNumberInt === 1 ? questionNumberInt : questionNumberInt - 1
+  const questionNumberInt = parseInt(questionNumber)
+  const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
+  const nextQuestionNumber = questionNumberInt + 1
+  const [surveyData, setSurveyData] = useState({})
 
   useEffect(() => {
     fetch(`http://localhost:8000/survey`).then((response) =>
       response
         .json()
-        .then(({ surveyData }) => console.log(surveyData))
+        .then(({ surveyData }) => setSurveyData(surveyData))
         .catch((error) => console.log(error)),
     )
   }, [])
 
   return (
     <div>
-      <h1>Questionnaire</h1>
-      <h2>Question {questionNumber}</h2>
-      <Link to={`/survey/${previous}`}>Précédent</Link>
-      {questionNumberInt !== 10 && <Link to={`/survey/${next}`}>Suivant</Link>}
-      {questionNumberInt === 10 && <Link to="/results">Résultats</Link>}
+      <h1>Question {questionNumber}</h1>
+      <p>{surveyData[questionNumber]} </p>
+      <div>
+        <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
+        {surveyData[questionNumberInt + 1] ? (
+          <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>
+        ) : (
+          <Link to="/results">Résultats</Link>
+        )}
+      </div>
     </div>
   )
 }

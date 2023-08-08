@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { Loader } from '../../utils/style/Atoms'
 
 function Survey() {
   const { questionNumber } = useParams()
@@ -8,12 +9,17 @@ function Survey() {
   const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
   const nextQuestionNumber = questionNumberInt + 1
   const [surveyData, setSurveyData] = useState({})
+  const [isDataLoading, setIsDataLoading] = useState(false)
 
   useEffect(() => {
+    setIsDataLoading(true)
     fetch(`http://localhost:8000/survey`).then((response) =>
       response
         .json()
-        .then(({ surveyData }) => setSurveyData(surveyData))
+        .then(({ surveyData }) => {
+          setSurveyData(surveyData)
+          setIsDataLoading(false)
+        })
         .catch((error) => console.log(error)),
     )
   }, [])
@@ -21,7 +27,7 @@ function Survey() {
   return (
     <div>
       <h1>Question {questionNumber}</h1>
-      <p>{surveyData[questionNumber]} </p>
+      {isDataLoading ? <Loader /> : <p>{surveyData[questionNumber]} </p>}
       <div>
         <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
         {surveyData[questionNumberInt + 1] ? (

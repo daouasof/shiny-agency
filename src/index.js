@@ -6,6 +6,7 @@ import Home from './pages/Home/index'
 import reportWebVitals from './reportWebVitals'
 import Survey from './pages/Survey'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import Error from './components/Error'
 import Results from './pages/Results'
 import Freelances from './pages/Freelances'
@@ -34,6 +35,7 @@ root.render(
         <Route path="/freelances" element={<Freelances />}></Route>
         <Route path="*" element={<Error />}></Route>
       </Routes>
+      <Footer />
     </Router>
   </React.StrictMode>,
   document.getElementById('root'),

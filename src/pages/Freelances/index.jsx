@@ -1,6 +1,7 @@
 import Card from '../../components/Card'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
+import { useEffect } from 'react'
 
 const CardsContainer = styled.div`
   display: grid;
@@ -42,6 +43,21 @@ const freelanceProfiles = [
 ]
 
 function Freelances() {
+  useEffect(() => {
+    async function fetchFreelances() {
+      try {
+        const response = await fetch(`http://localhost:8000/freelances`)
+        console.log(response)
+        const { freelancersList } = await response.json()
+        console.log(freelancersList)
+      } catch (err) {
+        console.log('=== error ===', err)
+      }
+    }
+
+    fetchFreelances()
+  }, [])
+
   return (
     <FreelancesWrapper>
       <FreelancesContainer>

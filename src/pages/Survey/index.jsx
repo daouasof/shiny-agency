@@ -62,33 +62,14 @@ function Survey() {
   const questionNumberInt = parseInt(questionNumber)
   const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
   const nextQuestionNumber = questionNumberInt + 1
-  // const [surveyData, setSurveyData] = useState({})
-  // cons, setDataLoading] = useState(false)
   const { saveAnswers, answers } = useContext(SurveyContext)
-  // const [error, setError] = useState(false)
   const { isLoading, data, error } = useFetch(`http://localhost:8000/survey`)
   const { surveyData } = data
+  // console.log(data)
 
   function saveReply(answer) {
     saveAnswers({ [questionNumber]: answer })
   }
-
-  // useEffect(() => {
-  //   async function fetchSurvey() {
-  //     setDataLoading(true)
-  //     try {
-  //       const response = await fetch(`http://localhost:8000/survey`)
-  //       const { surveyData } = await response.json()
-  //       setSurveyData(surveyData)
-  //     } catch (err) {
-  //       console.log(err)
-  //       setError(true)
-  //     } finally {
-  //       setDataLoading(false)
-  //     }
-  //   }
-  //   fetchSurvey()
-  // }, [])
 
   if (error) {
     return <span>Oups il y a eu un problème</span>

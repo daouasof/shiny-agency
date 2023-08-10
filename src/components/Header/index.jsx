@@ -1,7 +1,9 @@
 import styled from 'styled-components'
-import logo from '../../assets/dark-logo.png'
+import darkLogo from '../../assets/dark-logo.png'
+import lightLogo from '../../assets/light-logo.png'
 import { StyledLink } from '../../utils/style/Atoms'
 import { Link } from 'react-router-dom'
+import { useTheme } from '../../utils/hooks'
 
 const StyledNav = styled.nav`
   display: flex;
@@ -15,10 +17,12 @@ const HomeLogo = styled.img`
 `
 
 function Header() {
+  const { theme } = useTheme()
+
   return (
     <StyledNav>
       <Link to="/">
-        <HomeLogo src={logo} alt="logo" />
+        <HomeLogo src={theme === 'light' ? darkLogo : lightLogo} alt="logo" />
       </Link>
       <div>
         <StyledLink to="/">Accueil</StyledLink>

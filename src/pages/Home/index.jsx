@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import { StyledLink } from '../../utils/style/Atoms'
 import HomeIllustration from '../../assets/home-illustration.svg'
+import { useTheme } from '../../utils/hooks'
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -10,7 +11,8 @@ const HomeWrapper = styled.div`
 
 const HomerContainer = styled.div`
   margin: 30px;
-  background-color: ${colors.backgroundLight};
+  background-color: ${({ theme }) =>
+    theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
   padding: 60px 90px;
   display: flex;
   flex-direction: row;
@@ -38,9 +40,11 @@ const Illustration = styled.img`
 `
 
 function Home() {
+  const { theme } = useTheme()
+
   return (
     <HomeWrapper>
-      <HomerContainer>
+      <HomerContainer theme={theme}>
         <LeftCol>
           <StyledTitle>
             Repérez vos besoins, on s’occupe du reste, avec les meilleurs

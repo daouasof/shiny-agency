@@ -34,6 +34,7 @@ function Freelances() {
   )
 
   const { freelancersList } = data
+  console.log(freelancersList)
 
   if (error) {
     return <span>Oups, something went wrong</span>
@@ -55,7 +56,7 @@ function Freelances() {
               {freelancersList.map((profile, index) => (
                 <Card
                   key={`${profile.name}-${index}`}
-                  label={profile.jobTitle}
+                  label={profile.job}
                   picture={profile.picture}
                   title={profile.name}
                 />

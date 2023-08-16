@@ -34,7 +34,6 @@ function Freelances() {
   )
 
   const { freelancersList } = data
-  console.log(freelancersList)
 
   if (error) {
     return <span>Oups, something went wrong</span>
